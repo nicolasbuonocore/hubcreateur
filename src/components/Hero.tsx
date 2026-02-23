@@ -84,7 +84,10 @@ export default function Hero() {
           className="mt-6 flex flex-col items-center gap-3"
         >
           <p className="text-lg sm:text-xl text-text-body">
-            Agence de création et d&apos;accompagnement de chaînes YouTube qualifiées sur le marché francophone.
+            Agence de création et d&apos;accompagnement de chaînes{" "}
+            <span className="text-brand-pink font-semibold">YouTube</span>{" "}
+            qualifiées sur le{" "}
+            <span className="text-text-heading font-semibold">marché francophone</span>.
           </p>
           <div className="flex items-center gap-2 text-sm text-text-muted flex-wrap justify-center">
             <span>Méthode complète</span>
