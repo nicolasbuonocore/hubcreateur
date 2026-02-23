@@ -1,0 +1,132 @@
+---
+alwaysApply: true
+---
+
+# Hub Créateur — Cursor Rules
+
+## Stack technique
+- **Next.js 15** (App Router) + **TypeScript**
+- **Tailwind CSS v4** (syntaxe `@theme inline`, pas de `tailwind.config.js`)
+- **Framer Motion** pour toutes les animations
+- **Stripe** pour les paiements (via `CheckoutModal`)
+- Déployé sur **Vercel**, repo GitHub : `nicolasbuonocore/hubcreateur`
+
+## Structure des fichiers clés
+
+- [src/app/globals.css](mdc:src/app/globals.css) — Design system complet : variables CSS, animations, classes utilitaires
+- [src/lib/data.ts](mdc:src/lib/data.ts) — **Source unique de vérité** pour tout le contenu texte (titres, sous-titres, prix, liens nav, footer…)
+- [src/app/layout.tsx](mdc:src/app/layout.tsx) — Root layout, `CheckoutProvider` wrapping global
+- [src/app/page.tsx](mdc:src/app/page.tsx) — Page d'accueil, assemblage de toutes les sections
+
+## Composants principaux
+
+- [src/components/Navbar.tsx](mdc:src/components/Navbar.tsx) — Navbar sticky, logo dynamique (homepage `#` / autres pages `/`), `usePathname` pour le logo href
+- [src/components/Hero.tsx](mdc:src/components/Hero.tsx) — Hero avec compteur animé 0→180k (framer-motion `useMotionValue`), player vidéo intégré
+- [src/components/WhySection.tsx](mdc:src/components/WhySection.tsx) — Barre de progression RPG horizontale (desktop) / verticale (mobile), steps animés
+- [src/components/MethodSection.tsx](mdc:src/components/MethodSection.tsx) — Section blanche, 8 modules, `wave.webp` en bas
+- [src/components/Pricing.tsx](mdc:src/components/Pricing.tsx) — Offre principale + upsells, intègre `CheckoutModal`
+- [src/components/About.tsx](mdc:src/components/About.tsx) — Présentation créateur, `useChannelAge` hook, liens Instagram/Threads
+- [src/components/CheckoutModal.tsx](mdc:src/components/CheckoutModal.tsx) — Modal checkout, `CheckoutProvider` + `useCheckout` hook, support main offer (1x/2x/3x) et upsells directs Stripe
+- [src/components/Footer.tsx](mdc:src/components/Footer.tsx) — Section sombre, logo `logo-white.png`, grid 5 colonnes (logo ×2 + 3 colonnes liens)
+- [src/components/Simulator.tsx](mdc:src/components/Simulator.tsx) — Simulateur revenus YouTube
+- [src/components/ui/SectionTitle.tsx](mdc:src/components/ui/SectionTitle.tsx) — Composant titre réutilisable, props : `title`, `titleAccent`, `subtitle`, `dark`, `shine`, `accentFirst`
+- [src/components/ui/Button.tsx](mdc:src/components/ui/Button.tsx) — Bouton réutilisable, variants : `primary` (rose, shine animé), `ghost`, `secondary`
+
+## Pages légales (layout partagé)
+
+- [src/app/legal/layout.tsx](mdc:src/app/legal/layout.tsx) — Layout légal avec Navbar + Footer du site
+- [src/app/mentions-legales/page.tsx](mdc:src/app/mentions-legales/page.tsx)
+- [src/app/confidentialite/page.tsx](mdc:src/app/confidentialite/page.tsx)
+- [src/app/cgv/page.tsx](mdc:src/app/cgv/page.tsx)
+- [src/app/cookies/page.tsx](mdc:src/app/cookies/page.tsx)
+- [src/app/login/page.tsx](mdc:src/app/login/page.tsx) — Page login (sans signup), Google + email/password
+
+## Design System
+
+### Fonts
+```css
+/* Déclarés AVANT @import "tailwindcss" dans globals.css */
+@font-face { font-family: "CamptonBold"; src: url("/fonts/CamptonBold.otf"); }   /* h1, .font-title */
+@font-face { font-family: "CamptonBook"; src: url("/fonts/CamptonBook-text.otf"); } /* body */
+
+/* Dans @theme inline */
+--font-sans: "CamptonBook", var(--font-inter), system-ui;
+--font-title: "CamptonBold", system-ui;
+```
+- **Titres h1** → classe `font-title`
+- **Titres h2/sections** → classe `font-heading` (Plus Jakarta Sans 800)
+- **Body** → `font-sans` (CamptonBook, appliqué sur `body`)
+
+### Couleurs clés
+- Rose principal : `bg-brand-pink` / `text-brand-pink` → `#E8446D`
+- Hover rose : `hover:bg-brand-pink-hover`
+- Texte heading : `text-text-heading`
+- Texte body : `text-text-body`
+- Texte muted : `text-text-muted`
+- Section blanche : classe `section-white`
+- Section sombre : classe `section-dark`
+
+### Animations CSS
+- `.btn-shine` → reflet glissant sur boutons primaires roses (loop 4s)
+- `.hero-shine-text` → reflet animé sur texte (ex: "Vivre", "Hub Créateur")
+- `.price-shine` → reflet lent sur prix (supprimé sur demande)
+- `@keyframes btn-shine-slide` / `price-shine-slide` dans globals.css
+
+### Composant SectionTitle
+```tsx
+<SectionTitle
+  title="Texte normal"
+  titleAccent="Texte rose"   // affiché après title par défaut
+  accentFirst                 // met titleAccent AVANT title
+  shine                       // applique hero-shine-text sur titleAccent
+  dark                        // texte blanc (pour sections sombres)
+  subtitle="Sous-titre"
+/>
+```
+
+## Conventions importantes
+
+### Tailwind v4
+- **Pas de** `tailwind.config.js` — tout dans `@theme inline {}` dans `globals.css`
+- Les `@font-face` doivent être **avant** `@import "tailwindcss"`
+- Pour override de classes dans un composant enfant : `[&_h2]:!text-4xl`
+- Variables CSS dans `@theme inline` sont accessibles comme classes Tailwind
+
+### Données centralisées
+Tout le contenu texte est dans [src/lib/data.ts](mdc:src/lib/data.ts). **Ne jamais hardcoder du texte** directement dans les composants — toujours passer par `data.ts`.
+
+### Checkout / CTA
+- `useCheckout()` hook depuis `CheckoutModal` pour ouvrir la modale
+- **Les boutons CTA principaux** (Navbar "Rejoindre le Hub", Hero "Découvrir la méthode", FinalCTA "Commencer maintenant") → scrollent vers `#pricing` avec `document.getElementById("pricing").scrollIntoView({ behavior: "smooth" })`
+- **Le bouton "Rejoindre le Hub" dans la section pricing** → ouvre `openCheckout()` pour le flow email → paiement
+
+### onClick sur boutons avec openCheckout
+Toujours wrapper dans une arrow function pour éviter que le MouseEvent soit passé :
+```tsx
+// ✅ Correct
+onClick={() => openCheckout()}
+
+// ❌ Incorrect (passe MouseEvent comme argument)
+onClick={openCheckout}
+```
+
+### Images
+- Toutes dans `/public/images/`
+- Logo principal : `logo.png` (défaut), `logo-colored.png` (hover navbar), `logo-white.png` (footer + hover footer supprimé)
+- Fonts dans `/public/fonts/`
+
+## Entreprise / Légal
+- **Société** : XOXO Commerce, Inc. (Delaware)
+- **Adresse** : 651 N Broad St Suite 206, Middletown, 19709 Delaware, USA
+- **TVA OSS** : EU372077443
+- **Email** : nicolas@hubcreateur.com
+- **Hébergeur** : Vercel Inc.
+- Hub Créateur n'est **pas affilié** à YouTube (Google LLC) ni Meta Platforms
+
+## Message clé du site
+Hub Créateur n'est pas "juste une formation vidéo" — c'est :
+1. **Méthode complète** (8 modules actionnables)
+2. **Accompagnement personnalisé** par un YouTuber à 180k abonnés
+3. **Réseau d'agents** pour placements produits
+
+Ce message doit apparaître de façon cohérente dans Hero, MethodSection, WhySection, Pricing, FAQ et FinalCTA.
