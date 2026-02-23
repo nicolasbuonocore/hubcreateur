@@ -36,7 +36,7 @@ export type CheckoutProduct = {
 };
 
 type ModalContextType = {
-  openCheckout: (product?: CheckoutProduct | unknown) => void;
+  openCheckout: (product?: CheckoutProduct) => void;
 };
 
 const ModalContext = createContext<ModalContextType>({ openCheckout: () => {} });

@@ -36,7 +36,7 @@ export default function FinalCTA() {
             {finalCtaData.subtitle}
           </p>
 
-          <Button variant="primary" size="xl" onClick={openCheckout}>
+          <Button variant="primary" size="xl" onClick={() => openCheckout()}>
             {finalCtaData.cta}
           </Button>
 

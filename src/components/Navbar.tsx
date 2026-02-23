@@ -76,7 +76,7 @@ export default function Navbar() {
               <Button variant="ghost" size="sm" href="/login">
                 Se connecter
               </Button>
-              <Button variant="primary" size="sm" onClick={openCheckout}>
+              <Button variant="primary" size="sm" onClick={() => openCheckout()}>
                 Rejoindre le Hub
               </Button>
             </div>

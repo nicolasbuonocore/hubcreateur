@@ -148,7 +148,7 @@ export default function Hero() {
           transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
           className="mt-8"
         >
-          <Button variant="primary" size="lg" onClick={openCheckout}>
+          <Button variant="primary" size="lg" onClick={() => openCheckout()}>
             {heroData.ctaPrimary}
           </Button>
         </motion.div>

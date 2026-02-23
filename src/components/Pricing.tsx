@@ -90,7 +90,7 @@ function MainOffer() {
                 </p>
               </div>
 
-              <Button variant="primary" size="xl" onClick={openCheckout} className="w-full max-w-sm text-lg">
+              <Button variant="primary" size="xl" onClick={() => openCheckout()} className="w-full max-w-sm text-lg">
                 {offer.cta}
               </Button>
 
