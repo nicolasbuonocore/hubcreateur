@@ -40,7 +40,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] xl:text-[4.25rem] tracking-tight leading-[1.1] text-text-heading"
+          className="font-title text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] xl:text-[4.25rem] tracking-tight leading-[1.1] text-text-heading"
         >
           {heroData.titleAccent && (
             <span className="hero-shine-text">{heroData.titleAccent} </span>

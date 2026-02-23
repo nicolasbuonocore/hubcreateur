@@ -10,10 +10,20 @@
    ✓ Whitespace généreux, layout propre
    ============================================ */
 
+/* ─── Font titre custom ─── */
+@font-face {
+  font-family: "TitleFont";
+  src: url("/fonts/title.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   /* ─── Fonts ─────────────────────────────── */
   --font-sans:    var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-heading: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-title:   "TitleFont", var(--font-jakarta), system-ui, sans-serif;
 
   /* ─── Brand ─────────────────────────────── */
   --color-brand-pink:       #E8446D;
@@ -76,6 +86,10 @@ body {
   .font-heading {
     font-family: var(--font-jakarta), system-ui, sans-serif;
     font-weight: 800;
+  }
+  .font-title {
+    font-family: var(--font-title);
+    font-weight: 400;
   }
 }
 
