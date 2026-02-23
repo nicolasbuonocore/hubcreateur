@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+/* ============================================
+   HUB CRÉATEUR — Design System
+   Fidèle à Uppbeat.io :
+   ✓ Fond blanc pur
+   ✓ Blobs aquarelle UNIQUEMENT aux coins, doux
+   ✓ Bold sans-serif (Plus Jakarta Sans) pour titres
+   ✓ Rose #E8446D UNIQUEMENT sur CTAs
+   ✓ Whitespace généreux, layout propre
+   ============================================ */
+
+@theme inline {
+  /* ─── Fonts ─────────────────────────────── */
+  --font-sans:    var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+
+  /* ─── Brand ─────────────────────────────── */
+  --color-brand-pink:       #E8446D;
+  --color-brand-pink-hover: #d63862;
+  --color-brand-pink-light: #ff7096;
+  --color-brand-purple:     #6a5af9;
+  --color-brand-blue:       #4a90e8;
+  --color-brand-cyan:       #00c6ff;
+  --color-brand-orange:     #ff8a50;
+
+  /* ─── Backgrounds ───────────────────────── */
+  --color-bg-white:          #ffffff;
+  --color-bg-light:          #f7f8fa;
+  --color-bg-light-alt:      #f0f2f5;
+  --color-bg-dark:           #111218;
+  --color-bg-dark-card:      #1e2030;
+  --color-bg-dark-card-hover:#262840;
+
+  /* ─── Text ──────────────────────────────── */
+  --color-text-heading:        #111827;
+  --color-text-body:           #5a5f7a;
+  --color-text-muted:          #9ca3af;
+  --color-text-light:          #f0f0f5;
+  --color-text-light-secondary:#c0c4d0;
+  --color-text-light-muted:    #7a7f94;
+
+  /* ─── Borders ───────────────────────────── */
+  --color-border-light:       #e5e7eb;
+  --color-border-light-hover: #d1d5db;
+  --color-border-dark:        rgba(255,255,255,0.08);
+  --color-border-dark-hover:  rgba(255,255,255,0.15);
+}
+
+/* ============================================
+   Base
+   ============================================ */
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #ffffff;
+  color: var(--color-text-body);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(232, 68, 109, 0.12);
+  color: inherit;
+}
+
+/* ============================================
+   Heading font — Plus Jakarta Sans ExtraBold
+   Reproduit le bold sans-serif d'Uppbeat
+   ============================================ */
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    font-weight: 800;
+  }
+}
+
+/* ============================================
+   Button shine — Reflet glissant en boucle
+   ============================================ */
+
+.btn-shine {
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 80%
+  );
+  background-size: 250% 100%;
+  animation: btn-shine-slide 4s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+@keyframes btn-shine-slide {
+  0%, 100% { background-position: 200% center; }
+  50%      { background-position: -50% center; }
+}
+
+/* ============================================
+   Text gradient
+   ============================================ */
+
+.text-gradient-pink {
+  background: linear-gradient(135deg, #E8446D 0%, #ff6b8a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Reflet animé en boucle sur le mot "Vivre" */
+.hero-shine-text {
+  color: #E8446D;
+  background: linear-gradient(
+    110deg,
+    #E8446D 0%,
+    #E8446D 35%,
+    #ffb0b8 45%,
+    #ffb0b8 50%,
+    #ffb0b8 55%,
+    #E8446D 65%,
+    #E8446D 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: hero-shine 5s ease-in-out infinite;
+}
+
+@keyframes hero-shine {
+  0%, 100% { background-position: 100% center; }
+  50%      { background-position: -50% center; }
+}
+
+/* ============================================
+   Section backgrounds
+   ============================================ */
+
+.section-white { background-color: #ffffff; }
+.section-light { background-color: var(--color-bg-light); }
+.section-dark  { background-color: var(--color-bg-dark); }
+
+/* ============================================
+   BLOBS UPPBEAT — Style aquarelle, coins seulement
+   ⚠ Confinés aux bords, pas au centre
+   Doux, pastel, ne dominent pas le contenu
+   ============================================ */
+
+/* Blob bas-gauche (bleu → violet → rose) — très doux */
+.blob-corner-left {
+  background: linear-gradient(
+    145deg,
+    rgba(80,  110, 230, 0.22) 0%,
+    rgba(180,  60, 150, 0.20) 45%,
+    rgba(240, 100, 150, 0.14) 75%,
+    transparent 100%
+  );
+  filter: blur(60px);
+  border-radius: 9999px;
+}
+
+/* Blob haut-droite (saumon → rose) — très doux */
+.blob-corner-right {
+  background: linear-gradient(
+    225deg,
+    rgba(255, 150, 120, 0.20) 0%,
+    rgba(240, 100, 140, 0.15) 55%,
+    transparent 100%
+  );
+  filter: blur(60px);
+  border-radius: 9999px;
+}
+
+/* Blobs subtils pour sections sombres */
+.blob-dark-accent {
+  background: radial-gradient(circle, rgba(232,68,109,0.10) 0%, transparent 70%);
+}
+.blob-dark-blue {
+  background: radial-gradient(circle, rgba(106,90,249,0.08) 0%, transparent 70%);
+}
+
+/* ============================================
+   Animations blobs (lentes, organiques)
+   ============================================ */
+
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0)    scale(1);    }
+  40%       { transform: translate(20px,-15px) scale(1.03); }
+  70%       { transform: translate(-15px,10px) scale(0.97); }
+}
+
+.animate-blob       { animation: blob-float 18s ease-in-out infinite; }
+.animate-blob-slow  { animation: blob-float 26s ease-in-out infinite; }
+
+/* ============================================
+   Cards
+   ============================================ */
+
+.card-white {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-white:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.card-dark {
+  background: var(--color-bg-dark-card);
+  border: 1px solid var(--color-border-dark);
+  border-radius: 20px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.card-dark:hover {
+  background: var(--color-bg-dark-card-hover);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Next.js dev tools portal — override positioning
+   ============================================ */
+
+nextjs-portal {
+  left: unset;
+  top: unset;
+}
+
+/* ============================================
+   Scrollbar
+   ============================================ */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f7f8fa; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-pink); }
+
+/* ============================================
+   Simulator slider
+   ============================================ */
+
+.sim-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: #e5e7eb;
+  outline: none;
+}
+.sim-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E8446D;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(232, 68, 109, 0.35);
+  transition: transform 0.15s ease;
+}
+.sim-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+.sim-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E8446D;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(232, 68, 109, 0.35);
+}
