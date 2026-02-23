@@ -36,7 +36,14 @@ export default function FinalCTA() {
             {finalCtaData.subtitle}
           </p>
 
-          <Button variant="primary" size="xl" onClick={() => openCheckout()}>
+          <Button
+            variant="primary"
+            size="xl"
+            onClick={() => {
+              const el = document.getElementById("pricing");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             {finalCtaData.cta}
           </Button>
 

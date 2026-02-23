@@ -21,6 +21,12 @@ export default function Navbar() {
   const pathname = usePathname();
   const logoHref = pathname === "/" ? "#" : "/";
 
+  const scrollToPricing = () => {
+    setIsMobileMenuOpen(false);
+    const el = document.getElementById("pricing");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -79,7 +85,7 @@ export default function Navbar() {
               <Button variant="ghost" size="sm" href="/login">
                 Se connecter
               </Button>
-              <Button variant="primary" size="sm" onClick={() => openCheckout()}>
+              <Button variant="primary" size="sm" onClick={scrollToPricing}>
                 Rejoindre le Hub
               </Button>
             </div>
@@ -158,7 +164,7 @@ export default function Navbar() {
                     variant="primary"
                     size="lg"
                     fullWidth
-                    onClick={() => { setIsMobileMenuOpen(false); openCheckout(); }}
+                    onClick={scrollToPricing}
                   >
                     Rejoindre le Hub
                   </Button>
