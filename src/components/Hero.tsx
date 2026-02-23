@@ -84,9 +84,7 @@ export default function Hero() {
           className="mt-6 flex flex-col items-center gap-3"
         >
           <p className="text-lg sm:text-xl text-text-body">
-            Accompagnement complet par un YouTuber à{" "}
-            <AnimatedCounter />{" "}
-            abonnés.
+            Agence de création et d&apos;accompagnement de chaînes YouTube qualifiées sur le marché francophone.
           </p>
           <div className="flex items-center gap-2 text-sm text-text-muted flex-wrap justify-center">
             <span>Méthode complète</span>
