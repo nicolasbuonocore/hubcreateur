@@ -240,7 +240,8 @@ export const pricingMainOffer = {
 
 // PARTIE B — Services complémentaires (upsells, secondaires)
 export const pricingUpsells = {
-  sectionTitle: "Va plus loin avec ta chaîne",
+  sectionTitle: "avec ta chaîne",
+  sectionTitleAccent: "Va plus loin",
   sectionSubtitle:
     "Accompagnement sur-mesure et services exclusifs pour accélérer ta progression",
   services: [

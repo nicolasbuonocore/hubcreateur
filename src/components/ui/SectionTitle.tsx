@@ -9,6 +9,7 @@ interface SectionTitleProps {
   centered?: boolean;
   dark?: boolean;
   shine?: boolean;
+  accentFirst?: boolean;
   className?: string;
 }
 
@@ -19,6 +20,7 @@ export default function SectionTitle({
   centered = true,
   dark = false,
   shine = false,
+  accentFirst = false,
   className = "",
 }: SectionTitleProps) {
   return (
@@ -34,9 +36,12 @@ export default function SectionTitle({
           dark ? "text-white" : "text-text-heading"
         }`}
       >
-        {title}{" "}
-        {titleAccent && (
+        {accentFirst && titleAccent && (
           <span className={shine ? "hero-shine-text" : "text-gradient-pink"}>{titleAccent}</span>
+        )}
+        {accentFirst && titleAccent ? " " : ""}{title}
+        {!accentFirst && titleAccent && (
+          <>{" "}<span className={shine ? "hero-shine-text" : "text-gradient-pink"}>{titleAccent}</span></>
         )}
       </h2>
       {subtitle && (

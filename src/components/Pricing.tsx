@@ -254,8 +254,10 @@ export default function Pricing() {
         {/* PARTIE B */}
         <SectionTitle
           title={pricingUpsells.sectionTitle}
-          titleAccent=""
+          titleAccent={pricingUpsells.sectionTitleAccent}
           subtitle={pricingUpsells.sectionSubtitle}
+          shine
+          accentFirst
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {pricingUpsells.services.map((service, index) => (
