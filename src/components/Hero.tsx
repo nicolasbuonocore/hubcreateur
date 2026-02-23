@@ -1,10 +1,38 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import { heroData } from "@/lib/data";
 import Button from "@/components/ui/Button";
 import { useCheckout } from "@/components/CheckoutModal";
+
+function AnimatedCounter() {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (v) => Math.round(v));
+  const [display, setDisplay] = useState("0");
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    const timeout = setTimeout(() => {
+      const controls = animate(count, 180, {
+        duration: 2.2,
+        delay: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+      });
+      rounded.on("change", (v) => setDisplay(String(v)));
+      return controls.stop;
+    }, 100);
+    return () => clearTimeout(timeout);
+  }, [count, rounded]);
+
+  return (
+    <span className="inline-flex items-baseline gap-0.5">
+      <span className="text-brand-pink font-black tabular-nums">{display}k</span>
+    </span>
+  );
+}
 
 /* ============================================
    Hero — Style EXACT Uppbeat.io
@@ -49,14 +77,25 @@ export default function Hero() {
         </motion.h1>
 
         {/* Sous-titre */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          className="mt-5 text-base sm:text-lg text-text-body max-w-2xl mx-auto leading-relaxed"
+          className="mt-6 flex flex-col items-center gap-3"
         >
-          {heroData.subtitleBefore} <em className="line-through italic text-text-muted">{heroData.subtitleStriked}</em> {heroData.subtitleAfter}
-        </motion.p>
+          <p className="text-lg sm:text-xl text-text-body">
+            Accompagnement complet par un YouTuber à{" "}
+            <AnimatedCounter />{" "}
+            abonnés.
+          </p>
+          <div className="flex items-center gap-2 text-sm text-text-muted flex-wrap justify-center">
+            <span>Méthode complète</span>
+            <span className="w-1 h-1 rounded-full bg-brand-pink/40 inline-block" />
+            <span>Accompagnement personnalisé</span>
+            <span className="w-1 h-1 rounded-full bg-brand-pink/40 inline-block" />
+            <span>Réseau d&apos;agents placements</span>
+          </div>
+        </motion.div>
 
         {/* Player vidéo — style DA Hub Créateur */}
         <motion.div

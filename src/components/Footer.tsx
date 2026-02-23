@@ -41,7 +41,7 @@ export default function Footer() {
         {/* Main content */}
         <div className="py-12 sm:py-16 grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Logo & description */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="col-span-2 md:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -60,21 +60,10 @@ export default function Footer() {
               <p className="text-sm text-text-light-muted leading-relaxed max-w-xs">
                 La méthode et la communauté pour lancer ta chaîne YouTube.
               </p>
+              <p className="text-[10px] text-text-light-muted/50 leading-relaxed max-w-xs mt-3">
+                Hub Créateur n&apos;est en aucun cas affilié à YouTube, Google LLC ou Meta Platforms (Facebook/Instagram). YouTube™ est une marque déposée de Google LLC.
+              </p>
 
-              <div className="flex gap-3 mt-5">
-                {footerData.socials.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-xl bg-white/[0.05] hover:bg-brand-pink/15 flex items-center justify-center text-text-light-muted hover:text-brand-pink transition-all duration-300"
-                    aria-label={social.label}
-                  >
-                    <SocialIcon icon={social.icon} />
-                  </a>
-                ))}
-              </div>
             </motion.div>
           </div>
 
@@ -111,17 +100,6 @@ export default function Footer() {
           <p className="text-xs text-text-light-muted">
             © {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
           </p>
-          <div className="flex gap-6">
-            <a href="/mentions-legales" className="text-xs text-text-light-muted hover:text-text-light-secondary transition-colors">
-              Mentions légales
-            </a>
-            <a href="/cgv" className="text-xs text-text-light-muted hover:text-text-light-secondary transition-colors">
-              CGV
-            </a>
-            <a href="/confidentialite" className="text-xs text-text-light-muted hover:text-text-light-secondary transition-colors">
-              Confidentialité
-            </a>
-          </div>
         </div>
       </div>
     </footer>

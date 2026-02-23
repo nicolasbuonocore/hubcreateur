@@ -125,6 +125,33 @@ body {
 }
 
 /* ============================================
+   Price shine — Reflet lent sur le prix
+   ============================================ */
+
+.price-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 80%
+  );
+  transform: skewX(-15deg);
+  animation: price-shine-slide 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes price-shine-slide {
+  0%   { left: -100%; }
+  40%, 100% { left: 150%; }
+}
+
+/* ============================================
    Text gradient
    ============================================ */
 

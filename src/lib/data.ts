@@ -25,7 +25,7 @@ export const heroData = {
   titleAccent: "Vivre",
   subtitleBefore: "La méthode, l'accompagnement par un YouTuber",
   subtitleStriked: "(et pas Shorters)",
-  subtitleAfter: "à 180k abonnés, et un réseau d'agents pour tes placements.",
+  subtitleAfter: "",
   ctaPrimary: "Découvrir la méthode",
   ctaPrimaryHref: "#methode",
   ctaSecondary: "Voir les offres",
@@ -377,15 +377,6 @@ export const footerData = {
       ],
     },
     {
-      title: "Contact",
-      links: [
-        { label: "Instagram", href: "https://instagram.com" },
-        { label: "YouTube", href: "https://youtube.com" },
-        { label: "Discord", href: "https://discord.gg" },
-        { label: "Email", href: "mailto:contact@hubcreateur.com" },
-      ],
-    },
-    {
       title: "Légal",
       links: [
         { label: "Mentions légales", href: "/mentions-legales" },
@@ -397,6 +388,5 @@ export const footerData = {
   socials: [
     { label: "YouTube", href: "https://youtube.com", icon: "youtube" },
     { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-    { label: "Discord", href: "https://discord.gg", icon: "discord" },
   ],
 };
