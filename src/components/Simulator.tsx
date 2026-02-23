@@ -70,7 +70,7 @@ export default function Simulator() {
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl tracking-tight text-text-heading mb-4">
             Combien pourrais-tu gagner<br className="hidden sm:block" /> avec ta chaîne YouTube ?
           </h2>
-          <p className="text-text-body text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="text-text-body text-base sm:text-lg max-w-4xl mx-auto">
             On n&apos;est pas des vendeurs de rêve à te promettre des millions. Nos estimations sont basées sur les{" "}
             <a
               href="https://www.youtube.com/@togen"

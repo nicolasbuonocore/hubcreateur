@@ -45,7 +45,7 @@ export default function SectionTitle({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          className={`mt-4 text-lg max-w-2xl leading-relaxed ${centered ? "mx-auto" : ""} ${
+          className={`mt-4 text-lg max-w-3xl leading-relaxed ${centered ? "mx-auto" : ""} ${
             dark ? "text-text-light-secondary" : "text-text-body"
           }`}
         >

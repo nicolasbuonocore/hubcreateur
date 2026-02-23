@@ -71,8 +71,8 @@ export const whyData = {
 
 // ─── Section "La Méthode" ──────────────────────────
 export const methodData = {
-  title: "Une méthode complète,",
-  titleAccent: "pas un énième cours théorique",
+  title: "Une méthode complète, pas un énième cours théorique",
+  titleAccent: "",
   subtitle:
     "8 modules concrets + un accompagnement personnalisé par un YouTuber aguerri + un réseau d'agents pour tes placements. Chaque module est actionnable immédiatement.",
   modules: [

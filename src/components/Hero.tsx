@@ -53,7 +53,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          className="mt-5 text-base sm:text-lg text-text-body max-w-lg mx-auto leading-relaxed"
+          className="mt-5 text-base sm:text-lg text-text-body max-w-2xl mx-auto leading-relaxed"
         >
           {heroData.subtitleBefore} <em className="line-through italic text-text-muted">{heroData.subtitleStriked}</em> {heroData.subtitleAfter}
         </motion.p>

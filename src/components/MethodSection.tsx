@@ -36,6 +36,7 @@ export default function MethodSection() {
           title={methodData.title}
           titleAccent={methodData.titleAccent}
           subtitle={methodData.subtitle}
+          className="[&_h2]:!text-3xl [&_h2]:sm:!text-[2rem] [&_h2]:md:!text-[2.6rem] [&_h2]:whitespace-nowrap"
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

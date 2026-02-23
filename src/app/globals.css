@@ -1,29 +1,31 @@
-@import "tailwindcss";
-
-/* ============================================
-   HUB CRÉATEUR — Design System
-   Fidèle à Uppbeat.io :
-   ✓ Fond blanc pur
-   ✓ Blobs aquarelle UNIQUEMENT aux coins, doux
-   ✓ Bold sans-serif (Plus Jakarta Sans) pour titres
-   ✓ Rose #E8446D UNIQUEMENT sur CTAs
-   ✓ Whitespace généreux, layout propre
-   ============================================ */
-
-/* ─── Font titre custom ─── */
+/* ─── Fonts custom (AVANT tailwind pour être enregistrées) ─── */
 @font-face {
-  font-family: "TitleFont";
-  src: url("/fonts/title.otf") format("opentype");
+  font-family: "CamptonBold";
+  src: url("/fonts/CamptonBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CamptonBook";
+  src: url("/fonts/CamptonBook-text.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
+@import "tailwindcss";
+
+/* ============================================
+   HUB CRÉATEUR — Design System
+   ============================================ */
+
 @theme inline {
   /* ─── Fonts ─────────────────────────────── */
-  --font-sans:    var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-sans:    "CamptonBook", var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-heading: var(--font-jakarta), system-ui, -apple-system, sans-serif;
-  --font-title:   "TitleFont", var(--font-jakarta), system-ui, sans-serif;
+  --font-title:   "CamptonBold", system-ui, sans-serif;
 
   /* ─── Brand ─────────────────────────────── */
   --color-brand-pink:       #E8446D;
@@ -89,7 +91,7 @@ body {
   }
   .font-title {
     font-family: var(--font-title);
-    font-weight: 400;
+    font-weight: 700;
   }
 }
 
